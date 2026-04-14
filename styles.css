@@ -193,8 +193,8 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
   padding: 0 48px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  justify-content: center;
+  gap: 48px;
 }
 .nav-logo { display: flex; align-items: center; text-decoration: none; }
 .logo-img { height: 72px; width: auto; max-width: 320px; object-fit: contain; }
@@ -392,6 +392,8 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
   grid-column: 2;
   grid-row: 1 / 8;
   height: 420px;
+  overflow: hidden;
+  padding-right: 20px;
 }
 .card-stack { position: relative; width: 260px; height: 380px; }
 .card-item {
@@ -459,9 +461,9 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
 .card-3 {
   background: linear-gradient(145deg, #2D7A21, #1A4A11);
   box-shadow: 16px 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08);
-  transform: rotate(9deg) translate(30px, 20px);
+  transform: rotate(9deg) translate(10px, 20px);
   z-index: 2;
-  right: 0;
+  right: 10px;
 }
 .card-item:hover { transform: translateY(-16px) scale(1.04) rotate(0deg) !important; z-index: 10; }
 
@@ -1032,9 +1034,6 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
   .hero-content { grid-template-columns: 55% 45%; gap: 24px; }
 }
 
-/* ================================================
-   RESPONSIVE — MOBILE NAV BREAKPOINT
-   ================================================ */
 @media (max-width: 900px) {
   .hero-content { grid-template-columns: 1fr; }
   .hero-visual { display: none; }
@@ -1043,12 +1042,13 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
   .contact-layout { grid-template-columns: 1fr; gap: 48px; }
 }
 
+/* ================================================
+   RESPONSIVE — MOBILE
+   ================================================ */
 @media (max-width: 768px) {
   .section { padding: 64px 0; }
-
-  /* NAV */
   .hamburger { display: flex; }
-  .nav-inner { padding: 0 20px; }
+  .nav-inner { padding: 0 20px; justify-content: space-between; gap: 16px; }
   .logo-img { height: 52px; }
   .nav-links {
     position: fixed;
@@ -1070,30 +1070,20 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
   .nav-links.open { transform: translateX(0); }
   .nav-link { font-size: 24px; }
   .nav-cta-btn { font-size: 18px; padding: 14px 28px; width: 100%; text-align: center; }
-
-  /* HERO */
   .hero { padding: 110px 20px 80px; }
   .hero-title { font-size: clamp(44px, 12vw, 64px); }
   .hero-sub { font-size: 16px; }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; justify-content: center; }
-
-  /* SECTIONS */
   .service-grid { grid-template-columns: 1fr; }
   .service-card:last-child { grid-column: span 1; }
   .sport-grid { grid-template-columns: 1fr 1fr; }
   .sport-card-wide { grid-column: span 2; }
   .form-row { grid-template-columns: 1fr; }
-
-  /* LIVE CARD */
   .stat-num { font-size: 16px; }
   .stat-label { font-size: 10px; }
-
-  /* FOOTER */
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-
-  /* CURSOR OFF */
   body { cursor: auto; }
   .cursor, .cursor-trail { display: none; }
 }
