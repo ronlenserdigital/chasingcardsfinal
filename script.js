@@ -64,7 +64,6 @@ hamburger?.addEventListener('click', () => {
   document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
 });
 
-// Close menu on link click
 navLinks?.querySelectorAll('a').forEach(link => {
   link.addEventListener('click', () => {
     hamburger.classList.remove('active');
@@ -73,7 +72,6 @@ navLinks?.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Close on outside click
 document.addEventListener('click', (e) => {
   if (navLinks?.classList.contains('open') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
     hamburger.classList.remove('active');
@@ -90,7 +88,6 @@ const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry, i) => {
     if (entry.isIntersecting) {
-      // Stagger siblings
       const siblings = Array.from(entry.target.parentElement?.querySelectorAll('.reveal') || []);
       const idx = siblings.indexOf(entry.target);
       const delay = Math.min(idx * 80, 400);
@@ -200,35 +197,46 @@ document.querySelectorAll('.sport-card').forEach(card => {
 /* ============================
    CONTACT FORM
    ============================ */
-const contactForm   = document.getElementById('contactForm');
-const formSuccess   = document.getElementById('formSuccess');
+const contactForm = document.getElementById('contactForm');
+const formSuccess = document.getElementById('formSuccess');
 
 if (contactForm) {
-  contactForm.addEventListener('submit', (e) => {
+  contactForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const btn = contactForm.querySelector('button[type="submit"]');
     const originalText = btn.textContent;
-
     btn.textContent = 'Sending...';
-    btn.disabled    = true;
+    btn.disabled = true;
     btn.style.opacity = '0.7';
 
-    // Simulate submit (replace with Netlify form or backend)
-    setTimeout(() => {
-      btn.textContent  = '✓ Message Sent!';
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      btn.textContent = '✓ Message Sent!';
       btn.style.background = 'var(--green)';
       formSuccess?.classList.add('show');
       contactForm.reset();
-
       setTimeout(() => {
-        btn.textContent  = originalText;
-        btn.disabled     = false;
+        btn.textContent = originalText;
+        btn.disabled = false;
         btn.style.opacity = '1';
         btn.style.background = '';
         formSuccess?.classList.remove('show');
       }, 4000);
-    }, 1200);
+    } else {
+      btn.textContent = 'Something went wrong';
+      btn.style.background = 'var(--red)';
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.disabled = false;
+        btn.style.opacity = '1';
+        btn.style.background = '';
+      }, 3000);
+    }
   });
 }
 
@@ -281,7 +289,6 @@ function animateCounter(el, target, suffix = '') {
   requestAnimationFrame(step);
 }
 
-/* Trigger counter if stat nums are numeric */
 const statNums = document.querySelectorAll('.stat-num');
 const counterObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -313,15 +320,6 @@ if (heroGradient) {
   };
   animGradient();
 }
-
-/* ============================
-   NETLIFY FORM CONFIG
-   
-   To enable form on Netlify:
-   1. Add to <form> tag: data-netlify="true" name="contact"
-   2. Add hidden input: <input type="hidden" name="form-name" value="contact" />
-   3. Remove the e.preventDefault() simulation above and let Netlify handle it
-   ============================ */
 
 console.log('%cChasing Cards Solutions', 'color:#D72B2B;font-size:20px;font-weight:900;font-family:sans-serif;');
 console.log('%cBuilt by Ron Lenser Digital — ronlenserdigital.com', 'color:#4CAF35;font-size:12px;');
