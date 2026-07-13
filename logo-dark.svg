@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 170" width="580" height="170">
+<defs>
+  <style>@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&amp;display=swap');</style>
+  <filter id="sh" x="-25%" y="-25%" width="150%" height="150%">
+    <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="rgba(0,0,0,0.5)"/>
+  </filter>
+</defs>
+
+<!-- ====== SPEED LINES ====== -->
+<line x1="12" y1="68" x2="38" y2="68" stroke="#4CD918" stroke-width="3.5" stroke-linecap="round" opacity="0.75"/>
+<line x1="15" y1="84" x2="43" y2="84" stroke="#4CD918" stroke-width="3.5" stroke-linecap="round" opacity="0.55"/>
+<line x1="12" y1="100" x2="35" y2="100" stroke="#4CD918" stroke-width="3.5" stroke-linecap="round" opacity="0.4"/>
+
+<!-- ====== CHARACTER ====== -->
+
+<!-- BACK LEG -->
+<path d="M70,110 Q60,134 50,157" stroke="#1E1E1E" stroke-width="20" fill="none" stroke-linecap="round"/>
+<path d="M70,110 Q60,134 50,157" stroke="white"   stroke-width="15" fill="none" stroke-linecap="round"/>
+<path d="M68,111 Q58,135 48,157" stroke="rgba(160,185,215,0.5)" stroke-width="7" fill="none" stroke-linecap="round"/>
+<ellipse cx="43" cy="161" rx="18" ry="8.5" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<ellipse cx="41" cy="164" rx="14" ry="5"   fill="rgba(160,185,215,0.45)"/>
+
+<!-- BACK ARM -->
+<path d="M63,83 Q41,72 16,62" stroke="#1E1E1E" stroke-width="20" fill="none" stroke-linecap="round"/>
+<path d="M63,83 Q41,72 16,62" stroke="white"   stroke-width="15" fill="none" stroke-linecap="round"/>
+<path d="M63,85 Q41,74 16,64" stroke="rgba(160,185,215,0.5)" stroke-width="7" fill="none" stroke-linecap="round"/>
+<circle cx="15" cy="61" r="12" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<circle cx="6"  cy="51" r="7"  fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<circle cx="15" cy="48" r="7"  fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<circle cx="24" cy="51" r="7"  fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<ellipse cx="13" cy="62" rx="8" ry="6" fill="rgba(160,185,215,0.4)" transform="rotate(-10,13,62)"/>
+
+<!-- BODY -->
+<ellipse cx="78" cy="90" rx="18" ry="21" fill="white" stroke="#1E1E1E" stroke-width="2.8"/>
+<ellipse cx="70" cy="90" rx="9" ry="15" fill="rgba(160,185,215,0.45)"/>
+
+<!-- FRONT LEG -->
+<path d="M84,110 Q96,133 106,157" stroke="#1E1E1E" stroke-width="20" fill="none" stroke-linecap="round"/>
+<path d="M84,110 Q96,133 106,157" stroke="white"   stroke-width="15" fill="none" stroke-linecap="round"/>
+<path d="M82,111 Q94,133 104,157" stroke="rgba(160,185,215,0.45)" stroke-width="7" fill="none" stroke-linecap="round"/>
+<ellipse cx="110" cy="161" rx="20" ry="8.5" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<ellipse cx="108" cy="164" rx="16" ry="5"   fill="rgba(160,185,215,0.45)"/>
+
+<!-- FRONT ARM -->
+<path d="M93,83 Q117,71 140,61" stroke="#1E1E1E" stroke-width="20" fill="none" stroke-linecap="round"/>
+<path d="M93,83 Q117,71 140,61" stroke="white"   stroke-width="15" fill="none" stroke-linecap="round"/>
+<path d="M93,85 Q117,73 140,63" stroke="rgba(160,185,215,0.45)" stroke-width="7" fill="none" stroke-linecap="round"/>
+<circle cx="141" cy="60" r="13" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<circle cx="153" cy="52" r="7.5" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<circle cx="155" cy="61" r="7.5" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<circle cx="152" cy="70" r="7.5" fill="white" stroke="#1E1E1E" stroke-width="2.5"/>
+<ellipse cx="139" cy="61" rx="9" ry="7" fill="rgba(160,185,215,0.4)"/>
+
+<!-- NECK -->
+<path d="M80,63 Q79,76 79,82" stroke="#1E1E1E" stroke-width="18" fill="none" stroke-linecap="round"/>
+<path d="M80,63 Q79,76 79,82" stroke="white"   stroke-width="13" fill="none" stroke-linecap="round"/>
+
+<!-- HEAD -->
+<circle cx="84" cy="36" r="30" fill="white" stroke="#1E1E1E" stroke-width="2.8"/>
+<path d="M62,14 Q48,26 50,50 Q54,66 74,70 Q58,64 54,46 Q50,28 62,14 Z" fill="rgba(160,185,215,0.48)"/>
+
+<!-- EYES -->
+<ellipse cx="83" cy="27" rx="9"   ry="10"  fill="white" stroke="#1E1E1E" stroke-width="2.2"/>
+<ellipse cx="95" cy="38" rx="8.5" ry="9.5" fill="white" stroke="#1E1E1E" stroke-width="2.2"/>
+<circle cx="84" cy="28" r="6"   fill="#1E1E1E"/>
+<circle cx="96" cy="39" r="5.5" fill="#1E1E1E"/>
+<circle cx="86" cy="26" r="2.2" fill="white"/>
+<circle cx="98" cy="37" r="2"   fill="white"/>
+
+<!-- SMILE with teeth -->
+<path d="M67,52 Q82,68 102,59" fill="#1E1E1E" stroke="#1E1E1E" stroke-width="2.8" stroke-linecap="round"/>
+<path d="M68,53 Q82,68 101,60 Q86,64 68,55 Z" fill="white"/>
+<line x1="76" y1="55" x2="75" y2="61" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="83" y1="59" x2="82" y2="64" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="90" y1="61" x2="90" y2="65" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="97" y1="60" x2="97" y2="63" stroke="#1E1E1E" stroke-width="1.5" stroke-linecap="round"/>
+
+<!-- ====== FLYING CARDS ====== -->
+<g transform="rotate(-18, 149, 74)" filter="url(#sh)">
+  <rect x="132" y="50" width="34" height="48" rx="5" fill="#2DA412"/>
+  <rect x="136" y="54" width="26" height="40" rx="3" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+  <circle cx="149" cy="70" r="4.5" fill="rgba(255,255,255,0.55)"/>
+  <circle cx="143" cy="75" r="4"   fill="rgba(255,255,255,0.55)"/>
+  <circle cx="155" cy="75" r="4"   fill="rgba(255,255,255,0.55)"/>
+  <rect x="147" y="76" width="4" height="7" rx="1" fill="rgba(255,255,255,0.55)"/>
+  <rect x="143" y="82" width="12" height="2.5" rx="1.2" fill="rgba(255,255,255,0.55)"/>
+</g>
+<g transform="rotate(4, 163, 68)" filter="url(#sh)">
+  <rect x="146" y="44" width="34" height="48" rx="5" fill="#E03030"/>
+  <rect x="150" y="48" width="26" height="40" rx="3" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+  <polygon points="163,58 168,63 163,69 158,63" fill="rgba(255,255,255,0.6)"/>
+</g>
+<g transform="rotate(17, 177, 63)" filter="url(#sh)">
+  <rect x="160" y="39" width="34" height="48" rx="5" fill="#2B55D8"/>
+  <rect x="164" y="43" width="26" height="40" rx="3" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+  <polygon transform="translate(177,63)" points="0,-10 2.9,-4 9.5,-3 4.8,2 6.2,9.5 0,5.5 -6.2,9.5 -4.8,2 -9.5,-3 -2.9,-4" fill="rgba(255,255,255,0.65)"/>
+</g>
+
+<!-- ====== TEXT (white version for dark bg) ====== -->
+<g font-family="'Barlow Condensed','Arial Narrow',Impact,'Franklin Gothic Medium',sans-serif">
+  <text x="224" y="80"  font-size="60" font-weight="900" fill="#FFFFFF" letter-spacing="-1">CHASING</text>
+  <text x="224" y="132" font-size="60" font-weight="900" fill="#FF4444" letter-spacing="-1">CARDS</text>
+  <line x1="224" y1="139" x2="568" y2="139" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  <text x="226" y="155" font-size="14" font-weight="700" fill="#4CD918" letter-spacing="9.5">SOLUTIONS</text>
+</g>
+
+</svg>
