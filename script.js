@@ -305,21 +305,7 @@ statNums.forEach(n => counterObserver.observe(n));
 /* ============================
    GRADIENT ANIMATION (hero)
    ============================ */
-const heroGradient = document.querySelector('.hero-gradient');
-if (heroGradient) {
-  let gradAngle = 0;
-  const animGradient = () => {
-    gradAngle = (gradAngle + 0.1) % 360;
-    heroGradient.style.background = `
-      radial-gradient(ellipse 70% 60% at ${30 + Math.sin(gradAngle * 0.017) * 5}% 50%, rgba(26, 58, 143, 0.35) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 40% at ${80 + Math.cos(gradAngle * 0.017) * 5}% 20%, rgba(215, 43, 43, 0.2) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 50% at 70% 80%, rgba(58, 143, 43, 0.1) 0%, transparent 60%),
-      linear-gradient(165deg, var(--navy-mid) 0%, var(--navy) 100%)
-    `;
-    requestAnimationFrame(animGradient);
-  };
-  animGradient();
-}
+// hero gradient handled in CSS now
 
 console.log('%cChasing Cards Solutions', 'color:#D72B2B;font-size:20px;font-weight:900;font-family:sans-serif;');
 console.log('%cBuilt by Ron Lenser Digital — ronlenserdigital.com', 'color:#4CAF35;font-size:12px;');
