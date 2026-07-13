@@ -309,3 +309,148 @@ statNums.forEach(n => counterObserver.observe(n));
 
 console.log('%cChasing Cards Solutions', 'color:#D72B2B;font-size:20px;font-weight:900;font-family:sans-serif;');
 console.log('%cBuilt by Ron Lenser Digital — ronlenserdigital.com', 'color:#4CAF35;font-size:12px;');
+
+/* ============================
+   SHOP ENGINE — Google Sheet inventory
+   
+   SETUP (one time):
+   1. Client makes Google Sheet with columns:
+      name | sport | price | image_url | payment_link | status
+   2. File > Share > Publish to web > CSV > copy link
+   3. Paste that link below as SHEET_CSV_URL
+   
+   Client adds a row = card appears on site.
+   Client sets status to SOLD = shows sold badge.
+   Client deletes row = card gone.
+   Buy button = their Stripe Payment Link (stripe.com > Payment Links)
+   ============================ */
+const SHEET_CSV_URL = ''; // <- paste published Google Sheet CSV link here
+
+(function initShop() {
+  if (!SHEET_CSV_URL) return;
+
+  fetch(SHEET_CSV_URL)
+    .then(r => { if (!r.ok) throw new Error('sheet fetch failed'); return r.text(); })
+    .then(csv => {
+      const rows = parseCSV(csv);
+      if (!rows.length) return;
+
+      const grid = document.getElementById('shopGrid');
+      const section = document.getElementById('shop');
+      if (!grid || !section) return;
+
+      let rendered = 0;
+      rows.forEach(item => {
+        const name  = (item.name || '').trim();
+        const price = (item.price || '').trim();
+        if (!name || !price) return;
+
+        const sold  = (item.status || '').trim().toUpperCase() === 'SOLD';
+        const sport = (item.sport || '').trim();
+        const img   = (item.image_url || '').trim();
+        const link  = (item.payment_link || '').trim();
+
+        const card = document.createElement('div');
+        card.className = 'shop-card' + (sold ? ' sold' : '');
+
+        const imgEl = document.createElement('img');
+        imgEl.className = 'shop-card-img';
+        imgEl.loading = 'lazy';
+        imgEl.alt = name;
+        if (img) imgEl.src = img;
+
+        const body = document.createElement('div');
+        body.className = 'shop-card-body';
+
+        const sportEl = document.createElement('div');
+        sportEl.className = 'shop-card-sport';
+        sportEl.textContent = sport;
+
+        const nameEl = document.createElement('h3');
+        nameEl.className = 'shop-card-name';
+        nameEl.textContent = name;
+
+        const priceEl = document.createElement('div');
+        priceEl.className = 'shop-card-price';
+        priceEl.textContent = price.startsWith('$') ? price : '$' + price;
+
+        body.appendChild(sportEl);
+        body.appendChild(nameEl);
+        body.appendChild(priceEl);
+
+        if (sold) {
+          const badge = document.createElement('span');
+          badge.className = 'shop-sold-badge';
+          badge.textContent = 'Sold';
+          body.appendChild(badge);
+        } else if (link) {
+          const btn = document.createElement('a');
+          btn.className = 'shop-buy-btn';
+          btn.href = link;
+          btn.target = '_blank';
+          btn.rel = 'noopener';
+          btn.textContent = 'Buy Now';
+          body.appendChild(btn);
+        } else {
+          const btn = document.createElement('a');
+          btn.className = 'shop-buy-btn';
+          btn.href = '#contact';
+          btn.textContent = 'Contact to Buy';
+          body.appendChild(btn);
+        }
+
+        card.appendChild(imgEl);
+        card.appendChild(body);
+        grid.appendChild(card);
+        rendered++;
+      });
+
+      if (rendered > 0) {
+        section.style.display = '';
+        addShopNavLink();
+      }
+    })
+    .catch(err => console.warn('Shop inventory unavailable:', err.message));
+
+  function parseCSV(text) {
+    const lines = [];
+    let row = [], field = '', inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (inQuotes) {
+        if (c === '"' && text[i+1] === '"') { field += '"'; i++; }
+        else if (c === '"') inQuotes = false;
+        else field += c;
+      } else {
+        if (c === '"') inQuotes = true;
+        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === '\n' || c === '\r') {
+          if (field !== '' || row.length) { row.push(field); lines.push(row); row = []; field = ''; }
+          if (c === '\r' && text[i+1] === '\n') i++;
+        }
+        else field += c;
+      }
+    }
+    if (field !== '' || row.length) { row.push(field); lines.push(row); }
+    if (lines.length < 2) return [];
+    const headers = lines[0].map(h => h.trim().toLowerCase().replace(/\s+/g, '_'));
+    return lines.slice(1).map(vals => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = vals[i] || '');
+      return obj;
+    });
+  }
+
+  function addShopNavLink() {
+    const navList = document.getElementById('navLinks');
+    if (!navList || navList.querySelector('a[href="#shop"]')) return;
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#shop';
+    a.className = 'nav-link';
+    a.textContent = 'Shop';
+    li.appendChild(a);
+    const contactLi = navList.querySelector('a[href="#contact"]')?.closest('li');
+    navList.insertBefore(li, contactLi || null);
+  }
+})();
