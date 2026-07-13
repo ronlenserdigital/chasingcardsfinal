@@ -1146,3 +1146,98 @@ body:has(button:hover) .cursor-trail { width: 46px; height: 46px; border-color: 
 .forsale-empty a { color: var(--green-bright); }
 @media (max-width: 1024px) { .forsale-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .forsale-grid { grid-template-columns: 1fr; } }
+
+/* ================================================
+   SHOP (Google Sheet inventory + Stripe checkout)
+   ================================================ */
+.shop-section { background: var(--navy-mid); border-top: 1px solid rgba(255,255,255,0.06); }
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px;
+}
+.shop-card {
+  background: var(--navy-card);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+.shop-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,255,255,0.16);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.4);
+}
+.shop-card-img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  background: linear-gradient(145deg, var(--navy-mid), var(--navy-card));
+}
+.shop-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.shop-card-sport {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--green-bright);
+}
+.shop-card-name {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+}
+.shop-card-price {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--white);
+  margin-top: auto;
+}
+.shop-buy-btn {
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--red);
+  padding: 13px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 12px var(--red-glow);
+}
+.shop-buy-btn:hover {
+  background: var(--red-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--red-glow);
+}
+.shop-card.sold .shop-card-img { filter: grayscale(1) brightness(0.6); }
+.shop-sold-badge {
+  display: block;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white-50);
+  background: var(--white-15);
+  border: 1px solid rgba(255,255,255,0.12);
+  padding: 13px;
+  border-radius: 8px;
+}
