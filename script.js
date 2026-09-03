@@ -433,10 +433,22 @@ const SHEET_CSV_URL = ''; // <- paste published Google Sheet CSV link here
     }
     if (field !== '' || row.length) { row.push(field); lines.push(row); }
     if (lines.length < 2) return [];
-    const headers = lines[0].map(h => h.trim().toLowerCase().replace(/\s+/g, '_'));
+    // Header aliases: accepts our template AND Card Dealer Pro export column names
+    const ALIAS = {
+      name: 'name', title: 'name', card_name: 'name', card: 'name',
+      sport: 'sport', category: 'sport', sport_league: 'sport',
+      price: 'price', list_price: 'price', sale_price: 'price', asking_price: 'price',
+      image_url: 'image_url', image: 'image_url', front_image: 'image_url', photo: 'image_url', image_1: 'image_url',
+      payment_link: 'payment_link', stripe_link: 'payment_link', buy_link: 'payment_link',
+      status: 'status', availability: 'status', sold: 'status'
+    };
+    const headers = lines[0].map(h => {
+      const key = h.trim().toLowerCase().replace(/\s+/g, '_');
+      return ALIAS[key] || key;
+    });
     return lines.slice(1).map(vals => {
       const obj = {};
-      headers.forEach((h, i) => obj[h] = vals[i] || '');
+      headers.forEach((h, i) => { if (!(h in obj) || !obj[h]) obj[h] = vals[i] || ''; });
       return obj;
     });
   }
