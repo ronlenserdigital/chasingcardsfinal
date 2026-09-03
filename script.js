@@ -324,7 +324,7 @@ console.log('%cBuilt by Ron Lenser Digital — ronlenserdigital.com', 'color:#4C
    Client deletes row = card gone.
    Buy button = their Stripe Payment Link (stripe.com > Payment Links)
    ============================ */
-const SHEET_CSV_URL = ''; // <- paste published Google Sheet CSV link here
+const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSJJap1vbKNFGlIVzqpZwX581ZUCmdL6SrF7-OEUUPMsXBL3KpBNkrB0Gbt2yqNDUKKtpDYjsMbV_LJ/pub?output=csv';
 
 (function initShop() {
   if (!SHEET_CSV_URL) return;
@@ -413,6 +413,9 @@ const SHEET_CSV_URL = ''; // <- paste published Google Sheet CSV link here
     .catch(err => console.warn('Shop inventory unavailable:', err.message));
 
   function parseCSV(text) {
+    // Auto-detect delimiter: Google sometimes serves TSV even with output=csv
+    const firstLine = text.slice(0, text.indexOf('\n'));
+    const DELIM = (firstLine.split('\t').length > firstLine.split(',').length) ? '\t' : ',';
     const lines = [];
     let row = [], field = '', inQuotes = false;
     for (let i = 0; i < text.length; i++) {
@@ -423,7 +426,7 @@ const SHEET_CSV_URL = ''; // <- paste published Google Sheet CSV link here
         else field += c;
       } else {
         if (c === '"') inQuotes = true;
-        else if (c === ',') { row.push(field); field = ''; }
+        else if (c === DELIM) { row.push(field); field = ''; }
         else if (c === '\n' || c === '\r') {
           if (field !== '' || row.length) { row.push(field); lines.push(row); row = []; field = ''; }
           if (c === '\r' && text[i+1] === '\n') i++;
